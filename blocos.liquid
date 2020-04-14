@@ -1,0 +1,76 @@
+<style type="text/css">
+	.main-content {
+		margin-top:0px;
+		padding-bottom: 0px;
+	}
+
+	.bloco-desk {
+		margin: 0px;
+		margin-bottom: -8px;
+	}
+
+	.bloco-mobile {
+		margin: 0px;
+		margin-bottom: -8px;
+	}
+
+	@media only screen and (max-width: 749px) {
+  		.bloco-desk {
+  			display: none;
+  		}
+  	}
+
+	@media only screen and (min-width: 750px) {
+	  	.bloco-mobile {
+	    	display: none;
+	  	}
+	}
+</style>
+
+{%for block in section.blocks %}
+
+<div class="bloco-desk">
+	<a href="{{block.settings.link}}">
+		<img src="{{block.settings.desk | img_url:'master'}}" style="width:100%">
+	</a>
+</div>
+
+<div class="bloco-mobile">
+	<a href="{{block.settings.link}}">
+		<img src="{{block.settings.mobile | img_url:'master'}}" style="width:100%">
+	</a>
+</div>
+
+{%endfor%}
+
+{% schema %}
+  {
+    "name": "Blocos",
+	"max_blocks": 10,
+    "settings": [	
+				],
+	"blocks": 	[
+				{
+					"type":"image",
+					"name":"Bloco",
+					"settings": [
+								{
+									"type":"image_picker",
+									"label":"Imagem Desk",
+									"id":"desk"
+								},
+								{
+									"type":"image_picker",
+									"label":"Imagem Mobile",
+									"id":"mobile"
+								},
+								{
+									"type":"url",
+									"label":"Link",
+									"id":"link"
+								}
+								]
+				}
+				]
+  }
+{% endschema %}
